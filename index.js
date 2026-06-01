@@ -198,6 +198,17 @@ app.post("/pedidos", (req, res) => {
 });
 
 
+// Consulta de pedidos registrados
+app.get("/pedidos", (req, res) => {
+
+    res.json(pedidos);
+
+});
+
+
+
+
+
 
 // Inicio del servidor
 app.listen(PORT, () => {
