@@ -35,6 +35,31 @@ let productos = [
 // Arreglo temporal para almacenar pedidos
 let pedidos = [];
 
+// Registro de usuarios
+app.post("/registro", (req, res) => {
+
+    const { nombre, correo, contraseña } = req.body;
+
+    if (!nombre || !correo || !contraseña) {
+        return res.status(400).json({
+            mensaje: "Todos los campos son obligatorios"
+        });
+    }
+
+    usuarios.push({
+        id: usuarios.length + 1,
+        nombre,
+        correo,
+        contraseña
+    });
+
+    res.status(201).json({
+        mensaje: "Usuario registrado correctamente"
+    });
+
+});
+
+
 
 
 
