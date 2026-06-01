@@ -141,6 +141,15 @@ app.delete("/usuarios/:id", (req, res) => {
 });
 
 
+// Consulta del catálogo de productos
+app.get("/productos", (req, res) => {
+
+    res.json(productos);
+
+});
+
+
+
 
 
 
