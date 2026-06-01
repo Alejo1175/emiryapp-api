@@ -149,6 +149,34 @@ app.get("/productos", (req, res) => {
 });
 
 
+// Modificación de productos
+app.put("/productos/:id", (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    const producto = productos.find(
+        p => p.id === id
+    );
+
+    if (!producto) {
+        return res.status(404).json({
+            mensaje: "Producto no encontrado"
+        });
+    }
+
+    producto.nombre =
+        req.body.nombre || producto.nombre;
+
+    producto.precio =
+        req.body.precio || producto.precio;
+
+    res.json({
+        mensaje: "Producto actualizado correctamente",
+        producto
+    });
+
+});
+
 
 
 
