@@ -88,8 +88,34 @@ app.post("/login", (req, res) => {
 
 });
 
+// Actualización de usuarios
 
+app.put("/usuarios/:id", (req, res) => {
 
+    const id = parseInt(req.params.id);
+
+    const usuario = usuarios.find(
+        u => u.id === id
+    );
+
+    if (!usuario) {
+        return res.status(404).json({
+            mensaje: "Usuario no encontrado"
+        });
+    }
+
+    usuario.nombre =
+        req.body.nombre || usuario.nombre;
+
+    usuario.correo =
+        req.body.correo || usuario.correo;
+
+    res.json({
+        mensaje: "Usuario actualizado correctamente",
+        usuario
+    });
+
+});
 
 
 
