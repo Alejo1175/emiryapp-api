@@ -177,7 +177,25 @@ app.put("/productos/:id", (req, res) => {
 
 });
 
+// Creación de pedidos
+app.post("/pedidos", (req, res) => {
 
+    const { cliente, producto } = req.body;
+
+    const pedido = {
+        id: pedidos.length + 1,
+        cliente,
+        producto
+    };
+
+    pedidos.push(pedido);
+
+    res.status(201).json({
+        mensaje: "Pedido creado correctamente",
+        pedido
+    });
+
+});
 
 
 
