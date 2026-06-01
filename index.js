@@ -35,6 +35,7 @@ let productos = [
 // Arreglo temporal para almacenar pedidos
 let pedidos = [];
 
+
 // Registro de usuarios
 app.post("/registro", (req, res) => {
 
@@ -58,6 +59,36 @@ app.post("/registro", (req, res) => {
     });
 
 });
+
+
+// Inicio de sesión
+app.post("/login", (req, res) => {
+
+    const { correo, contraseña } = req.body;
+
+    const usuario = usuarios.find(
+        user =>
+            user.correo === correo &&
+            user.contraseña === contraseña
+    );
+
+    if (usuario) {
+
+        res.json({
+            mensaje: "autenticación satisfactoria"
+        });
+
+    } else {
+
+        res.status(401).json({
+            mensaje: "error de autenticación"
+        });
+
+    }
+
+});
+
+
 
 
 
