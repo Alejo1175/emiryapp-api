@@ -117,6 +117,33 @@ app.put("/usuarios/:id", (req, res) => {
 
 });
 
+// Eliminación de usuarios
+app.delete("/usuarios/:id", (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    const indice = usuarios.findIndex(
+        u => u.id === id
+    );
+
+    if (indice === -1) {
+        return res.status(404).json({
+            mensaje: "Usuario no encontrado"
+        });
+    }
+
+    usuarios.splice(indice, 1);
+
+    res.json({
+        mensaje: "Usuario eliminado correctamente"
+    });
+
+});
+
+
+
+
+
 // Inicio del servidor
 app.listen(PORT, () => {
     console.log(`Servidor funcionando en puerto ${PORT}`);
