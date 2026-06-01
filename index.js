@@ -117,9 +117,6 @@ app.put("/usuarios/:id", (req, res) => {
 
 });
 
-
-
-
 // Inicio del servidor
 app.listen(PORT, () => {
     console.log(`Servidor funcionando en puerto ${PORT}`);
