@@ -12,7 +12,7 @@ const PORT = 3000;
 // Permite recibir datos JSON
 app.use(express.json());
 
-// Conexión a la base de datos
+// Conexión a la base de datos MySQL
 const conexion = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -20,7 +20,7 @@ const conexion = mysql.createConnection({
     database: "emiryapp"
 });
 
-// Verificamos la conexión
+// Verificamos la // Conexión a la base de datos MySQL 
 conexion.connect((error) => {
 
     if (error) {
@@ -31,7 +31,6 @@ conexion.connect((error) => {
     console.log("Conectado a MySQL");
 
 });
-
 
 // ==========================================
 // REGISTRO DE USUARIOS
