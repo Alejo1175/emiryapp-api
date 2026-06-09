@@ -48,25 +48,50 @@ app.post("/registro", (req, res) => {
 
     }
 
-    const sql =
-        "INSERT INTO usuarios(nombre, correo, contraseña) VALUES (?, ?, ?)";
-
+    // Verificar si el correo ya existe
     conexion.query(
-        sql,
-        [nombre, correo, contraseña],
-        (error) => {
+        "SELECT * FROM usuarios WHERE correo = ?",
+        [correo],
+        (error, resultados) => {
 
             if (error) {
 
                 return res.status(500).json({
-                    mensaje: "Error al registrar usuario"
+                    mensaje: "Error al verificar el usuario"
                 });
 
             }
 
-            res.status(201).json({
-                mensaje: "Usuario registrado correctamente"
-            });
+            if (resultados.length > 0) {
+
+                return res.status(409).json({
+                    mensaje: "El correo ya se encuentra registrado"
+                });
+
+            }
+
+            const sql =
+                "INSERT INTO usuarios(nombre, correo, contraseña) VALUES (?, ?, ?)";
+
+            conexion.query(
+                sql,
+                [nombre, correo, contraseña],
+                (error) => {
+
+                    if (error) {
+
+                        return res.status(500).json({
+                            mensaje: "Error al registrar usuario"
+                        });
+
+                    }
+
+                    res.status(201).json({
+                        mensaje: "Usuario registrado correctamente"
+                    });
+
+                }
+            );
 
         }
     );
