@@ -335,6 +335,30 @@ app.get("/pedidos", (req, res) => {
 
 
 // ==========================================
+// CONSULTAR USUARIOS REGISTRADOS
+// ==========================================
+
+
+app.get("/usuarios", (req, res) => {
+
+    conexion.query(
+        "SELECT id, nombre, correo FROM usuarios",
+        (error, resultados) => {
+
+            if (error) {
+                return res.status(500).json({
+                    mensaje: "Error al consultar usuarios"
+                });
+            }
+
+            res.json(resultados);
+
+        }
+    );
+
+});
+
+// ==========================================
 // INICIO DEL SERVIDOR
 // ==========================================
 
